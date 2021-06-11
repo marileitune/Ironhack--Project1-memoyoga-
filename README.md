@@ -6,14 +6,14 @@ This is a memory card game for 1 player.
 ### Aim of the game
 The aim of the game is to match the illustrations of yoga asanas with their names. 
 The player has 5 lives, which means that only 10 mistakes can be made. 
-The game has a time tracker and the player has a maximum limit of 30 minutes to complete the game.
+The game has a time tracker and the player has a maximum limit of 5 minutes to complete the game.
 
 ### How to play
 All cards start face down in 4 or 6 rows with 5 columns, regardind the level that was choosen. When the player clicks the mouse on a card, it will shuffle and show the name or the illustration of a yoga position.
 The player then needs to click on another card to shuffle. If the player finds the correct pair, the cards are going to keep faced up, with the illustration and name appearing.
 When a player turns over two cards that do not match, those cards are turned face down again (in the same position) after 3 seconds and the player loses 1 life (will decrease the counter by 1).
 So the trick is to remember which cards are where and match all pairs without making more than 10 mistakes in a maximum of 30 minutes.
-If the player makes more than 10 mistakes or doesn't complete the game in 30 minutes, the game is over and will appear a screen to try again. 
+If the player makes more than 10 mistakes or doesn't complete the game in 5 minutes, the game is over and will appear a screen to try again. 
 If the player completes the game, the game is over and will appear a screen to try again. 
 
 The game offers two levels: 
@@ -39,6 +39,22 @@ The game has an audio by default. The player can turn the audio off or on again 
 
 My plan is build the first (splash), the second (level choice) and the fourth screens with canvas and the third (game) with CSS.
 
+### Data structure
+
+#### index.html
+- canvas (1920×1080)
+- script (link js file)
+- build the first, second and fourth screens
+
+#### style.css
+- style the third screen
+
+#### script.js (canvas)
+- size: 1920×1080
+- images 
+- audio
+- build the third screen
+
 ### Fonts that will be used
 - Indie Flower Regular
 - Monteserrat Regular
@@ -57,11 +73,21 @@ My plan is build the first (splash), the second (level choice) and the fourth sc
 - 20 cards with the purple flower (cards faced down - beginner level)
 - 30 cards with the pink flower (cards faced down - advanced level)
 
+### Audio that will be added
+
+https://drive.google.com/file/d/1mKkJ26KFLzHDzAa_iFD-SUznCUfztgk8/view?usp=sharing
+
 ### Buttons 
 - START
 - TRY AGAIN
 
-### Text
+### Colors palette
+- #FFE5FE
+- #FCDBFA
+- #DE3E9F
+- #A6408B
+
+### Texts
 
 #### 1st frame (splash)
 - MEMOYOGA (Indie Flower Regular)
@@ -88,5 +114,7 @@ My plan is build the first (splash), the second (level choice) and the fourth sc
 - Ranking (in order of who completes in less time and with less mistakes)
 - 2-player option (play with a friend)
 
-# Ironhack--Project1-memoyoga-
-# Ironhack--Project1-memoyoga-
+
+### Tasks
+
+https://trello.com/b/AFUAaoRb
