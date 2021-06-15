@@ -42,7 +42,7 @@ My plan is build the first (splash), the second (level choice) and the fourth sc
 ### Data structure
 
 #### index.html
-- canvas (1920×1080)
+- canvas (1365 x 780)
 - script (link js file)
 - build the first, second and fourth screens
 
