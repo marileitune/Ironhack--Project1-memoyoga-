@@ -8,9 +8,11 @@ let ctx = canvas.getContext('2d');
 let startBtn = document.querySelector('#start')
 let tryAgainBtn = document.querySelector('#tryAgain')
 
+let memoryBoard = document.querySelector('#memory-board')
+
 //audios
 let gameAudio = new Audio('https://sanctus.sfo2.digitaloceanspaces.com/AUDIO.mp3')
-let screenAudio = new Audio('https://sanctus.sfo2.digitaloceanspaces.com/audio-yoga.mp3')
+let screenAudio = new Audio('https://sanctus.sfo2.digitaloceanspaces.com/yoga.mp3')
 screenAudio.autoplay = true
 
 //images
@@ -213,12 +215,15 @@ function startSettings() {
     memoryGame.lives = 20
 }
 
+
+let cannotClick = false
+
 //game screen
 function click() {
     let htmlElement = '';
     memoryGame.cards.forEach((elem) => {
         htmlElement += `
-      <div class="card" data-card-title="${elem.title}">
+      <div class="card" data-card-title="${elem.title} source="">
         <img class="back" src="${elem.bg.currentSrc}">
         <img class="front" src="${elem.img.currentSrc}">
       </div>
@@ -227,33 +232,43 @@ function click() {
     document.querySelector('#memory-board').innerHTML += htmlElement;
     document.querySelectorAll('.card').forEach((card) => {
         card.addEventListener('click', () => {
-            card.querySelector(".back").setAttribute("hidden", "true")
-            let cardClicked = card
-            memoryGame.pickedCards.push(cardClicked)
-            let intervalId = setInterval(function () {
-                if (memoryGame.pickedCards.length == 2) {
-                    let isPair = memoryGame.checkIfPair(memoryGame.pickedCards[0], memoryGame.pickedCards[1])
-                    if (isPair === false) {
-                        memoryGame.pickedCards[0].querySelector(".back").removeAttribute("hidden")
-                        memoryGame.pickedCards[1].querySelector(".back").removeAttribute("hidden")
-                        updateScore()
+            if (cannotClick === false) {
+                card.querySelector(".back").setAttribute("hidden", "true")
+                let cardClicked = card //dom do card que foi clicado
+                console.log(cardClicked)
+                if (!(memoryGame.pickedCards.includes(cardClicked))) {
+                    memoryGame.pickedCards.push(cardClicked)
+                    if (memoryGame.pickedCards.length == 2) {
+                        cannotClick = true
+                        console.log(cannotClick)
                     }
-                    memoryGame.pickedCards = []
+                    setTimeout(function () {
+                        if (memoryGame.pickedCards.length == 2) {
+                            let isPair = memoryGame.checkIfPair(memoryGame.pickedCards[0], memoryGame.pickedCards[1])
+                            if (isPair === false) {
+                                memoryGame.pickedCards[0].querySelector(".back").removeAttribute("hidden")
+                                memoryGame.pickedCards[1].querySelector(".back").removeAttribute("hidden")
+                                updateScore()
+                            }
+                            memoryGame.pickedCards = []
+                        }
+                        if (memoryGame.checkIfFinished() === true) {
+                            win()
+                        }
+                        console.log(memoryGame.lives)
+                        console.log(memoryGame.gameOver)
+                        if (memoryGame.gameOver === true) {
+                            gameOver()
+                        }
+                        cannotClick = false
+                    }, 2500)
                 }
 
-                if (memoryGame.checkIfFinished() === true) {
-                    win()
-                }
-                console.log(memoryGame.lives)
-                console.log(memoryGame.gameOver)
-                if (memoryGame.gameOver === true) {
-                    gameOver()
-                }
-                clearInterval(intervalId)
-            }, 1500)
+            }
         });
     });
 }
+
 
 function updateScore() {
     ctx.clearRect(0, 0, canvas.width, canvas.height)
@@ -279,6 +294,7 @@ function gameOver() {
     tryAgainBtn.style.display = 'block'
     startBtn.style.display = 'none'
     screenAudio.play()
+    gameAudio.pause()
     ctx.drawImage(bigImage, 482, 110)
     ctx.drawImage(soundOn, 1216, 28)
     logo()
@@ -299,6 +315,7 @@ function win() {
     startBtn.style.display = 'none'
     canvas.style.display = "block"
     screenAudio.play()
+    gameAudio.pause()
     ctx.drawImage(bigImage, 482, 110)
     ctx.drawImage(soundOn, 1216, 28)
     logo()

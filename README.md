@@ -9,8 +9,8 @@ The player has 5 lives, which means that only 10 mistakes can be made.
 The game has a time tracker and the player has a maximum limit of 5 minutes to complete the game.
 
 ### How to play
-All cards start face down in 4 or 6 rows with 5 columns, regardind the level that was choosen. When the player clicks the mouse on a card, it will shuffle and show the name or the illustration of a yoga position.
-The player then needs to click on another card to shuffle. If the player finds the correct pair, the cards are going to keep faced up, with the illustration and name appearing.
+All cards start face down in 4 or 6 rows with 5 columns, regardind the level that was choosen. When the player clicks the mouse on a card, it will turn over and show the name or the illustration of a yoga position.
+The player then needs to click on another card to turn over. If the player finds the correct pair, the cards are going to keep faced up, with the illustration and name appearing.
 When a player turns over two cards that do not match, those cards are turned face down again (in the same position) after 3 seconds and the player loses 1 life (will decrease the counter by 1).
 So the trick is to remember which cards are where and match all pairs without making more than 10 mistakes in a maximum of 30 minutes.
 If the player makes more than 10 mistakes or doesn't complete the game in 5 minutes, the game is over and will appear a screen to try again. 
