@@ -9,7 +9,7 @@ canvas {
 }
 
 .card {
-display: inline-block;
+  display: inline-block;
   perspective: 300px;
   transform-style: preserve-3d;
   position: relative;
@@ -41,6 +41,7 @@ button {
   margin-left: 550px;
   margin-top: 600px
 }
+
 
 #splash-frame {
   justify-content: space-around;

@@ -171,6 +171,7 @@ function logo() {
     ctx.fillText("MEMOYOGA", 471, 90);
     ctx.closePath()
 }
+
 //splash screen
 function splashScreen() {
     tryAgainBtn.style.display = 'none'
@@ -209,7 +210,7 @@ function startSettings() {
     memoryGame.pairsClicked = 0
     memoryGame.pairsGuessed = 0
     memoryGame.gameOver = false
-    memoryGame.lives = 15
+    memoryGame.lives = 20
 }
 
 //game screen
@@ -239,14 +240,17 @@ function click() {
                     }
                     memoryGame.pickedCards = []
                 }
+
+                if (memoryGame.checkIfFinished() === true) {
+                    win()
+                }
+                console.log(memoryGame.lives)
+                console.log(memoryGame.gameOver)
+                if (memoryGame.gameOver === true) {
+                    gameOver()
+                }
                 clearInterval(intervalId)
             }, 1500)
-            memoryGame.checkIfFinished
-            if (memoryGame.gameOver === true) {
-                tryAgainBtn.style.display = "block"
-                canvas.style.display = 'block'
-                document.querySelector('#memory-board').innerHTML = ''
-            }
         });
     });
 }
@@ -258,7 +262,10 @@ function updateScore() {
     ctx.font = "50px Indie Flower"
     ctx.fillText(`Lives: ${memoryGame.lives}`, 20, 150)
     ctx.closePath()
+    logo()
+    ctx.drawImage(soundOn, 1216, 28)
 }
+
 function gameScreen() {
     updateScore()
     logo()
@@ -266,7 +273,42 @@ function gameScreen() {
 }
 
 //gameOver screen
-function gameOver() { }
+function gameOver() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height)
+    document.querySelector('#memory-board').innerHTML = ''
+    tryAgainBtn.style.display = 'block'
+    startBtn.style.display = 'none'
+    screenAudio.play()
+    ctx.drawImage(bigImage, 482, 110)
+    ctx.drawImage(soundOn, 1216, 28)
+    logo()
+    ctx.beginPath()
+    ctx.font = "30px Montserrat Semibold";
+    ctx.fillStyle = "#DE3E9F";
+    ctx.fillText("You need more practice. But keep calm and", 350, 550);
+    ctx.closePath()
+}
+
+
+//win screen
+function win() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height)
+    document.querySelector('#memory-board').innerHTML = ''
+    tryAgainBtn.style.display = 'block'
+    tryAgainBtn.innerHTML = "RESTART"
+    startBtn.style.display = 'none'
+    canvas.style.display = "block"
+    screenAudio.play()
+    ctx.drawImage(bigImage, 482, 110)
+    ctx.drawImage(soundOn, 1216, 28)
+    logo()
+    ctx.beginPath()
+    ctx.font = "30px Montserrat Semibold";
+    ctx.fillStyle = "#DE3E9F";
+    ctx.fillText("Youwin. How about trying to do it in less time?", 442, 550);
+    ctx.closePath()
+
+}
 
 window.addEventListener('load', (event) => {
     splashScreen()
