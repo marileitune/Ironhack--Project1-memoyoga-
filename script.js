@@ -1,9 +1,5 @@
-
 // get Canvas element from HTML file
 let canvas = document.querySelector('canvas')
-
-// style the canvas background color
-canvas.style.backgroundColor = "#FFE5FE"
 
 //get access to the canvas tags 2D drawing functions
 let ctx = canvas.getContext('2d');
@@ -12,36 +8,24 @@ let ctx = canvas.getContext('2d');
 let startBtn = document.querySelector('#start')
 let tryAgainBtn = document.querySelector('#tryAgain')
 
-// get game section from HTML file
-// let gameSection = document.querySelector('#game-frame')
-// let livesDOM = document.querySelector('#game-frame span').innerHTML
-// livesDOM = `${memoryGame.lives}`
-
-// get all the images elements faced down from HTML file. It will return an array with all the elements [img.one, img.two, img.three ...] (index 0-29).
-// let faceDown = document.querySelectorAll('img')
-
-//audio
-let startAudio = new Audio('https://sanctus.sfo2.digitaloceanspaces.com/AUDIO.mp3')
+//audios
+let gameAudio = new Audio('https://sanctus.sfo2.digitaloceanspaces.com/AUDIO.mp3')
+let screenAudio = new Audio('https://sanctus.sfo2.digitaloceanspaces.com/audio-yoga.mp3')
+screenAudio.autoplay = true
 
 //images
 let bigImage = new Image();
 bigImage.src = './css/images/big-image.png';
 
-let midImage = new Image();
-midImage.src = './css/images/mid-image.png';
-
-let beginnerFlower = new Image();
-beginnerFlower.src = './css/images/beginner-flower.png'
-
-let advancedFlower = new Image();
-advancedFlower.src = './css/images/advanced-flower.png'
-
-// cards faced down
-let beginnerCard = new Image();
-beginnerCard.src = './css/images/beginner-card.png'
-
 let advancedCard = new Image();
 advancedCard.src = './css/images/advanced-card.png'
+
+let soundOn = new Image();
+soundOn.src = './css/images/sound-on.png'
+
+let soundOff = new Image();
+soundOff.src = './css/images/sound-off.png'
+
 
 //load images faced up
 let img1 = new Image();
@@ -179,8 +163,56 @@ let cards = [card1, card2, card3, card4, card5, card6, card7, card8, card9, card
 
 let memoryGame = new MemoryGame(cards);
 
-//start
+// logo 
+function logo() {
+    ctx.beginPath()
+    ctx.font = "90px Indie Flower";
+    ctx.fillStyle = "#A6408B";
+    ctx.fillText("MEMOYOGA", 471, 90);
+    ctx.closePath()
+}
+//splash screen
+function splashScreen() {
+    tryAgainBtn.style.display = 'none'
+    canvas.style.display = "block"
+    screenAudio.play()
+    ctx.drawImage(bigImage, 482, 110)
+    ctx.drawImage(soundOn, 1216, 28)
+    logo()
+    ctx.beginPath()
+    ctx.font = "30px Montserrat Semibold";
+    ctx.fillStyle = "#DE3E9F";
+    ctx.fillText("Learn the names of yoga poses", 442, 550);
+    ctx.closePath()
+}
 
+//start screen
+livesDOM = `${memoryGame.lives}`
+function startSettings() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height)
+    screenAudio.pause()
+    gameAudio.play()
+    //loop audio (to repeat the audio when it ends)
+    if (typeof gameAudio.loop == 'boolean') {
+        gameAudio.loop = true;
+    }
+    else {
+        gameAudio.addEventListener('ended', function () {
+            this.currentTime = 0;
+            this.play();
+        }, false);
+    }
+    startBtn.style.display = 'none'
+    tryAgainBtn.style.display = 'none'
+    memoryGame.shuffleCards();
+    memoryGame.pickedCards = []
+    memoryGame.pairsClicked = 0
+    memoryGame.pairsGuessed = 0
+    memoryGame.gameOver = false
+    memoryGame.lives = 15
+}
+
+//game screen
 function click() {
     let htmlElement = '';
     memoryGame.cards.forEach((elem) => {
@@ -203,7 +235,7 @@ function click() {
                     if (isPair === false) {
                         memoryGame.pickedCards[0].querySelector(".back").removeAttribute("hidden")
                         memoryGame.pickedCards[1].querySelector(".back").removeAttribute("hidden")
-                        console.log(card)
+                        updateScore()
                     }
                     memoryGame.pickedCards = []
                 }
@@ -219,27 +251,34 @@ function click() {
     });
 }
 
-function startSettings() {
-    startAudio.play()
-    startBtn.style.display = 'none'
-    tryAgainBtn.style.display = 'none'
-    memoryGame.shuffleCards();
-    memoryGame.pickedCards = []
-    memoryGame.pairsClicked = 0
-    memoryGame.pairsGuessed = 0
-    memoryGame.gameOver = false
-    memoryGame.lives = 15
+function updateScore() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height)
+    ctx.beginPath()
+    ctx.fillStyle = "#A6408B"
+    ctx.font = "50px Indie Flower"
+    ctx.fillText(`Lives: ${memoryGame.lives}`, 20, 150)
+    ctx.closePath()
+}
+function gameScreen() {
+    updateScore()
+    logo()
+    ctx.drawImage(soundOn, 1216, 28)
 }
 
+//gameOver screen
+function gameOver() { }
+
 window.addEventListener('load', (event) => {
-    tryAgainBtn.style.display = 'none'
+    splashScreen()
     startBtn.addEventListener('click', () => {
         startSettings()
         click()
+        gameScreen()
     })
     tryAgainBtn.addEventListener('click', () => {
         startSettings()
         click()
+        gameScreen()
     })
 });
 

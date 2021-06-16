@@ -1,4 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
+body {
+  background-color: #FFE5FE ;
+}
 
 canvas {
     position: absolute;
@@ -28,4 +31,22 @@ font-family: 'Indie Flower', cursive;
 
 button {
   position: absolute;
+  background-color: #A6408B;
+  color: #FFE5FE;
+  font-family: 'Indie Flower', cursive;
+  font-size: 50px;
+  border: none;
+  padding: 5px 60px;
+  border-radius: 30px;
+  margin-left: 550px;
+  margin-top: 600px
+}
+
+#splash-frame {
+  justify-content: space-around;
+}
+
+#memory-board {
+  padding-top: 200px;
+  padding-left: 15px;
 }
