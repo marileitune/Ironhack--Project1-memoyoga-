@@ -9,12 +9,12 @@ let startBtn = document.querySelector('#start')
 let tryAgainBtn = document.querySelector('#tryAgain')
 
 let memoryBoard = document.querySelector('#memory-board')
-
 let soundOn = document.querySelector('.sound-on')
+
 //audios
 let gameAudio = new Audio('https://sanctus.sfo2.digitaloceanspaces.com/AUDIO.mp3')
 let screenAudio = new Audio('https://sanctus.sfo2.digitaloceanspaces.com/yoga.mp3')
-screenAudio.autoplay = true
+screenAudio.autoplay = "true"
 
 //images
 let bigImage = new Image();
