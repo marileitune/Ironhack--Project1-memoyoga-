@@ -4,10 +4,9 @@ let canvas = document.querySelector('canvas')
 //get access to the canvas tags 2D drawing functions
 let ctx = canvas.getContext('2d');
 
-// get buttons elements from HTML file
+// get elements from HTML file
 let startBtn = document.querySelector('#start')
-let tryAgainBtn = document.querySelector('#tryAgain')
-
+let tryAgainBtn = document.querySelector('#try-again')
 let memoryBoard = document.querySelector('#memory-board')
 let soundOn = document.querySelector('.sound-on')
 
@@ -162,7 +161,7 @@ let cards = [card1, card2, card3, card4, card5, card6, card7, card8, card9, card
 
 let memoryGame = new MemoryGame(cards);
 
-// logo 
+// logo (will serve for all the screens)
 function logo() {
     ctx.beginPath()
     ctx.font = "90px Indie Flower";
@@ -176,8 +175,8 @@ function splashScreen() {
     tryAgainBtn.style.display = 'none'
     canvas.style.display = "block"
     splashSong()
-    ctx.drawImage(bigImage, 482, 110)
     logo()
+    ctx.drawImage(bigImage, 482, 110)
     ctx.beginPath()
     ctx.font = "30px Montserrat Semibold";
     ctx.fillStyle = "#DE3E9F";
@@ -187,18 +186,14 @@ function splashScreen() {
 
 //start screen
 livesDOM = `${memoryGame.lives}`
+
 function startSettings() {
     ctx.clearRect(0, 0, canvas.width, canvas.height)
-    screenAudio.pause()
     gameSong()
     startBtn.style.display = 'none'
     tryAgainBtn.style.display = 'none'
+    memoryGame.startSettings();
     memoryGame.shuffleCards();
-    memoryGame.pickedCards = []
-    memoryGame.pairsClicked = 0
-    memoryGame.pairsGuessed = 0
-    memoryGame.gameOver = false
-    memoryGame.lives = 20
 }
 
 //game screen
@@ -218,13 +213,11 @@ function click() {
         card.addEventListener('click', () => {
             if (cannotClick === false) {
                 card.querySelector(".back").setAttribute("hidden", "true")
-                let cardClicked = card //dom do card que foi clicado
-                console.log(cardClicked)
+                let cardClicked = card
                 if (!(memoryGame.pickedCards.includes(cardClicked))) {
                     memoryGame.pickedCards.push(cardClicked)
                     if (memoryGame.pickedCards.length == 2) {
                         cannotClick = true
-                        console.log(cannotClick)
                         setTimeout(function () {
                             let isPair = memoryGame.checkIfPair(memoryGame.pickedCards[0], memoryGame.pickedCards[1])
                             if (isPair === false) {
@@ -254,12 +247,12 @@ function click() {
 
 function updateScore() {
     ctx.clearRect(0, 0, canvas.width, canvas.height)
+    logo()
     ctx.beginPath()
     ctx.fillStyle = "#A6408B"
     ctx.font = "50px Indie Flower"
     ctx.fillText(`Lives: ${memoryGame.lives}`, 42, 150)
     ctx.closePath()
-    logo()
 }
 
 function gameScreen() {
@@ -293,8 +286,6 @@ function pauseSong() {
     gameAudio.pause()
 }
 
-
-
 //gameOver screen
 function gameOver() {
     ctx.clearRect(0, 0, canvas.width, canvas.height)
@@ -306,7 +297,7 @@ function gameOver() {
     ctx.beginPath()
     ctx.font = "30px Montserrat Semibold";
     ctx.fillStyle = "#DE3E9F";
-    ctx.fillText("You need more practice. But keep calm and", 350, 550);
+    ctx.fillText(`Pairs guessed: ${memoryGame.pairsGuessed}. You need more practice. But keep calm and`, 232, 550);
     ctx.closePath()
 }
 

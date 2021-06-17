@@ -5,20 +5,15 @@ This is a memory card game for 1 player.
 
 ### Aim of the game
 The aim of the game is to match the illustrations of yoga asanas with their names. 
-The player has 5 lives, which means that only 10 mistakes can be made. 
-The game has a time tracker and the player has a maximum limit of 5 minutes to complete the game.
+The player has 25 lives, which means that only 25 mistakes can be made. 
 
 ### How to play
-All cards start face down in 4 or 6 rows with 5 columns, regardind the level that was choosen. When the player clicks the mouse on a card, it will turn over and show the name or the illustration of a yoga position.
+All cards start faced down. When the player clicks the mouse on a card, it will turn over and show the name or the illustration of a yoga position.
 The player then needs to click on another card to turn over. If the player finds the correct pair, the cards are going to keep faced up, with the illustration and name appearing.
 When a player turns over two cards that do not match, those cards are turned face down again (in the same position) after 3 seconds and the player loses 1 life (will decrease the counter by 1).
 So the trick is to remember which cards are where and match all pairs without making more than 10 mistakes in a maximum of 30 minutes.
-If the player makes more than 10 mistakes or doesn't complete the game in 5 minutes, the game is over and will appear a screen to try again. 
+If the player makes more than 25 mistakes, the game is over and will appear a screen to try again. 
 If the player completes the game, the game is over and will appear a screen to try again. 
-
-The game offers two levels: 
-- beginner: the player needs to match 10 pairs of yoga poses for beginners (20 cards displayed in 4 rows);
-- advanced: the player needs to match 15 pairs of yoga poses, including advanced asanas (30 cards displayed in 6 rows).
 
 ## Settings
 The game has an audio by default. The player can turn the audio off or on again by clicking the button in the top right corner of the screen (when the music is on the button that will appear has a volum icon and when the music is off the button that will appear has a mute icon).
@@ -93,26 +88,21 @@ https://drive.google.com/file/d/1mKkJ26KFLzHDzAa_iFD-SUznCUfztgk8/view?usp=shari
 - MEMOYOGA (Indie Flower Regular)
 - Learn the names of yoga poses (Montserrat Regular)
 
-#### 2nd frame(level choice)
-- BEGINNER (Indie Flower Regular)
-- 10 pairs (Montserrat Regular)
-- ADVANCED (Indie Flower Regular)
-- 15 pairs (Montserrat Regular)
+#### 2nd frame
+- Lives: 25 
 
-#### 3rd frame
-- 00:00 (timer)
-- Lives: 10 
-
-#### 4th frame (game over)
+#### 3rd frame (game over)
 - You need more practice. But keep calm and
 
-#### 4th frame (win)
+#### 3rd frame (win)
 - You win! How about trying to do it in less time?
 
 ### Backlog
 
 - Ranking (in order of who completes in less time and with less mistakes)
 - 2-player option (play with a friend)
+- Chronometer
+- Two levels: beginner: the player needs to match 10 pairs of yoga poses for beginners; advanced: the player needs to match 15 pairs of yoga poses, including advanced asanas.
 
 
 ### Tasks

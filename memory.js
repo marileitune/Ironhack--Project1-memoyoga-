@@ -1,11 +1,13 @@
 class MemoryGame {
     constructor(cards) {
         this.cards = cards;
+    }
+    startSettings() {
         this.pickedCards = []
         this.pairsClicked = 0
         this.pairsGuessed = 0
         this.gameOver = false
-        this.lives = 20
+        this.lives = 25
     }
 
     shuffleCards() {
