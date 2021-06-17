@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
 body {
-  background-color: #FFE5FE ;
+  background-color: #FFE5FE;
+  display: flex;
 }
 
 canvas {
@@ -42,12 +43,16 @@ button {
   margin-top: 600px
 }
 
-
-#splash-frame {
-  justify-content: space-around;
-}
-
 #memory-board {
   padding-top: 200px;
-  padding-left: 15px;
+  padding-left: 6%;
+  padding-right: 1%;
+  position: absolute;
+}
+
+.sound-on, .sound-off {
+  margin-left: 1200px;
+  margin-top: 30px;
+  position: absolute;
+  z-index: +1;
 }

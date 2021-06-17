@@ -10,10 +10,11 @@ let tryAgainBtn = document.querySelector('#tryAgain')
 
 let memoryBoard = document.querySelector('#memory-board')
 
+let soundOn = document.querySelector('.sound-on')
 //audios
 let gameAudio = new Audio('https://sanctus.sfo2.digitaloceanspaces.com/AUDIO.mp3')
 let screenAudio = new Audio('https://sanctus.sfo2.digitaloceanspaces.com/yoga.mp3')
-screenAudio.autoplay = true
+// screenAudio.autoplay = true
 
 //images
 let bigImage = new Image();
@@ -21,13 +22,6 @@ bigImage.src = './css/images/big-image.png';
 
 let advancedCard = new Image();
 advancedCard.src = './css/images/advanced-card.png'
-
-let soundOn = new Image();
-soundOn.src = './css/images/sound-on.png'
-
-let soundOff = new Image();
-soundOff.src = './css/images/sound-off.png'
-
 
 //load images faced up
 let img1 = new Image();
@@ -180,7 +174,6 @@ function splashScreen() {
     canvas.style.display = "block"
     screenAudio.play()
     ctx.drawImage(bigImage, 482, 110)
-    ctx.drawImage(soundOn, 1216, 28)
     logo()
     ctx.beginPath()
     ctx.font = "30px Montserrat Semibold";
@@ -195,16 +188,7 @@ function startSettings() {
     ctx.clearRect(0, 0, canvas.width, canvas.height)
     screenAudio.pause()
     gameAudio.play()
-    //loop audio (to repeat the audio when it ends)
-    if (typeof gameAudio.loop == 'boolean') {
-        gameAudio.loop = true;
-    }
-    else {
-        gameAudio.addEventListener('ended', function () {
-            this.currentTime = 0;
-            this.play();
-        }, false);
-    }
+
     startBtn.style.display = 'none'
     tryAgainBtn.style.display = 'none'
     memoryGame.shuffleCards();
@@ -215,10 +199,8 @@ function startSettings() {
     memoryGame.lives = 20
 }
 
-
-let cannotClick = false
-
 //game screen
+let cannotClick = false
 function click() {
     let htmlElement = '';
     memoryGame.cards.forEach((elem) => {
@@ -241,9 +223,7 @@ function click() {
                     if (memoryGame.pickedCards.length == 2) {
                         cannotClick = true
                         console.log(cannotClick)
-                    }
-                    setTimeout(function () {
-                        if (memoryGame.pickedCards.length == 2) {
+                        setTimeout(function () {
                             let isPair = memoryGame.checkIfPair(memoryGame.pickedCards[0], memoryGame.pickedCards[1])
                             if (isPair === false) {
                                 memoryGame.pickedCards[0].querySelector(".back").removeAttribute("hidden")
@@ -251,19 +231,19 @@ function click() {
                                 updateScore()
                             }
                             memoryGame.pickedCards = []
-                        }
-                        if (memoryGame.checkIfFinished() === true) {
-                            win()
-                        }
-                        console.log(memoryGame.lives)
-                        console.log(memoryGame.gameOver)
-                        if (memoryGame.gameOver === true) {
-                            gameOver()
-                        }
-                        cannotClick = false
-                    }, 2500)
-                }
 
+                            if (memoryGame.checkIfFinished() === true) {
+                                win()
+                            }
+                            console.log(memoryGame.lives)
+                            console.log(memoryGame.gameOver)
+                            if (memoryGame.gameOver === true) {
+                                gameOver()
+                            }
+                            cannotClick = false
+                        }, 2500)
+                    }
+                }
             }
         });
     });
@@ -275,17 +255,63 @@ function updateScore() {
     ctx.beginPath()
     ctx.fillStyle = "#A6408B"
     ctx.font = "50px Indie Flower"
-    ctx.fillText(`Lives: ${memoryGame.lives}`, 20, 150)
+    ctx.fillText(`Lives: ${memoryGame.lives}`, 42, 150)
     ctx.closePath()
     logo()
-    ctx.drawImage(soundOn, 1216, 28)
 }
 
 function gameScreen() {
     updateScore()
     logo()
-    ctx.drawImage(soundOn, 1216, 28)
+    gameSong()
 }
+
+function splashSong() {
+    if (soundOn.getAttribute('src') === './css/images/sound-on.png') {
+        screenAudio.play()
+        //loop audio (to repeat the audio when it ends)
+        if (typeof screenAudio.loop == 'boolean') {
+            screenAudio.loop = true;
+        }
+        else {
+            screenAudio.addEventListener('ended', function () {
+                this.currentTime = 0;
+                this.play();
+            }, false);
+        }
+        gameAudio.pause()
+    } else {
+        screenAudio.pause()
+        gameAudio.pause()
+    }
+}
+
+function gameSong() {
+    if (soundOn.getAttribute('src') === './css/images/sound-on.png') {
+        screenAudio.pause()
+        gameAudio.play()
+        //loop audio (to repeat the audio when it ends)
+        if (typeof gameAudio.loop == 'boolean') {
+            gameAudio.loop = true;
+        }
+        else {
+            gameAudio.addEventListener('ended', function () {
+                this.currentTime = 0;
+                this.play();
+            }, false);
+        }
+    } else {
+        screenAudio.pause()
+        gameAudio.pause()
+    }
+}
+
+function pauseSong() {
+    screenAudio.pause()
+    gameAudio.pause()
+}
+
+
 
 //gameOver screen
 function gameOver() {
@@ -293,10 +319,7 @@ function gameOver() {
     document.querySelector('#memory-board').innerHTML = ''
     tryAgainBtn.style.display = 'block'
     startBtn.style.display = 'none'
-    screenAudio.play()
-    gameAudio.pause()
     ctx.drawImage(bigImage, 482, 110)
-    ctx.drawImage(soundOn, 1216, 28)
     logo()
     ctx.beginPath()
     ctx.font = "30px Montserrat Semibold";
@@ -314,10 +337,9 @@ function win() {
     tryAgainBtn.innerHTML = "RESTART"
     startBtn.style.display = 'none'
     canvas.style.display = "block"
-    screenAudio.play()
-    gameAudio.pause()
+    splashSong()
     ctx.drawImage(bigImage, 482, 110)
-    ctx.drawImage(soundOn, 1216, 28)
+
     logo()
     ctx.beginPath()
     ctx.font = "30px Montserrat Semibold";
@@ -339,5 +361,19 @@ window.addEventListener('load', (event) => {
         click()
         gameScreen()
     })
+    soundOn.addEventListener('click', () => {
+        if (soundOn.getAttribute('src') === './css/images/sound-on.png') {
+            soundOn.setAttribute('src', './css/images/sound-off.png')
+            pauseSong()
+        } else if (soundOn.getAttribute('src') === './css/images/sound-off.png') {
+            soundOn.setAttribute('src', './css/images/sound-on.png')
+            if (startBtn.style.display === 'none' && tryAgainBtn.style.display === 'none') {
+                gameSong()
+            } else {
+                splashSong()
+            }
+        }
+    })
+
 });
 
