@@ -14,7 +14,10 @@ let soundOn = document.querySelector('.sound-on')
 //audios
 let gameAudio = new Audio('https://sanctus.sfo2.digitaloceanspaces.com/AUDIO.mp3')
 let screenAudio = new Audio('https://sanctus.sfo2.digitaloceanspaces.com/yoga.mp3')
-screenAudio.autoplay = "true"
+gameAudio.volume = 0.1
+screenAudio.volume = 0.1
+gameAudio.loop = true
+screenAudio.loop = true
 
 //images
 let bigImage = new Image();
@@ -172,7 +175,7 @@ function logo() {
 function splashScreen() {
     tryAgainBtn.style.display = 'none'
     canvas.style.display = "block"
-    screenAudio.play()
+    splashSong()
     ctx.drawImage(bigImage, 482, 110)
     logo()
     ctx.beginPath()
@@ -187,8 +190,7 @@ livesDOM = `${memoryGame.lives}`
 function startSettings() {
     ctx.clearRect(0, 0, canvas.width, canvas.height)
     screenAudio.pause()
-    gameAudio.play()
-
+    gameSong()
     startBtn.style.display = 'none'
     tryAgainBtn.style.display = 'none'
     memoryGame.shuffleCards();
@@ -269,16 +271,6 @@ function gameScreen() {
 function splashSong() {
     if (soundOn.getAttribute('src') === './css/images/sound-on.png') {
         screenAudio.play()
-        //loop audio (to repeat the audio when it ends)
-        if (typeof screenAudio.loop == 'boolean') {
-            screenAudio.loop = true;
-        }
-        else {
-            screenAudio.addEventListener('ended', function () {
-                this.currentTime = 0;
-                this.play();
-            }, false);
-        }
         gameAudio.pause()
     } else {
         screenAudio.pause()
@@ -290,16 +282,6 @@ function gameSong() {
     if (soundOn.getAttribute('src') === './css/images/sound-on.png') {
         screenAudio.pause()
         gameAudio.play()
-        //loop audio (to repeat the audio when it ends)
-        if (typeof gameAudio.loop == 'boolean') {
-            gameAudio.loop = true;
-        }
-        else {
-            gameAudio.addEventListener('ended', function () {
-                this.currentTime = 0;
-                this.play();
-            }, false);
-        }
     } else {
         screenAudio.pause()
         gameAudio.pause()
@@ -339,7 +321,6 @@ function win() {
     canvas.style.display = "block"
     splashSong()
     ctx.drawImage(bigImage, 482, 110)
-
     logo()
     ctx.beginPath()
     ctx.font = "30px Montserrat Semibold";
