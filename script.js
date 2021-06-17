@@ -288,6 +288,7 @@ function pauseSong() {
 
 //gameOver screen
 function gameOver() {
+    splashSong()
     ctx.clearRect(0, 0, canvas.width, canvas.height)
     document.querySelector('#memory-board').innerHTML = ''
     tryAgainBtn.style.display = 'block'
@@ -316,7 +317,7 @@ function win() {
     ctx.beginPath()
     ctx.font = "30px Montserrat Semibold";
     ctx.fillStyle = "#DE3E9F";
-    ctx.fillText("Youwin. How about trying to do it in less time?", 442, 550);
+    ctx.fillText("You won. Now go practice yoga. Namastê!", 357, 550);
     ctx.closePath()
 
 }

@@ -7,7 +7,7 @@ class MemoryGame {
         this.pairsClicked = 0
         this.pairsGuessed = 0
         this.gameOver = false
-        this.lives = 25
+        this.lives = 50
     }
 
     shuffleCards() {
