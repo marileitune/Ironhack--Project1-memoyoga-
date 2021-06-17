@@ -15,6 +15,7 @@ let soundOn = document.querySelector('.sound-on')
 let gameAudio = new Audio('https://sanctus.sfo2.digitaloceanspaces.com/AUDIO.mp3')
 let screenAudio = new Audio('https://sanctus.sfo2.digitaloceanspaces.com/yoga.mp3')
 screenAudio.autoplay = "true"
+screenAudio.muted = "muted"
 
 //images
 let bigImage = new Image();
