@@ -317,7 +317,7 @@ function win() {
     ctx.beginPath()
     ctx.font = "30px Montserrat Semibold";
     ctx.fillStyle = "#DE3E9F";
-    ctx.fillText("You won. Now go practice yoga. Namastê!", 357, 550);
+    ctx.fillText("You won. Now go to practice yoga. Namastê!", 357, 550);
     ctx.closePath()
 
 }
