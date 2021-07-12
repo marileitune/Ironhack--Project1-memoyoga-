@@ -4,37 +4,23 @@
 
 body {
   background-color: #FFE5FE;
-  display: flex;
 }
 
 canvas {
-    position: absolute;
-    z-index: -1
+  z-index: -1
 }
 
-.card {
-  display: inline-block;
-  perspective: 300px;
-  transform-style: preserve-3d;
-  position: relative;
-}
-
-.front {
-position: relative;
-z-index: -1
-}
-
-.back {
-position: absolute;
-}
-
-h1 {
-color: #A6408B;
-font-family: 'Indie Flower', cursive;
+#game {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 0 40px 0px;
+  align-content: center;
+  margin: 10px 0;
 }
 
 button {
-  position: absolute;
   background-color: #A6408B;
   color: #FFE5FE;
   font-family: 'Indie Flower', cursive;
@@ -42,20 +28,48 @@ button {
   border: none;
   padding: 5px 60px;
   border-radius: 30px;
-  margin-left: 550px;
-  margin-top: 600px
 }
+
+.sound-on,
+.sound-off {
+  position: relative;
+  left: 550px;
+  bottom: 570px;
+  z-index: +1;
+}
+
+.card {
+  display: inline-block;
+  perspective: 300px;
+  transform-style: preserve-3d;
+  position: relative;
+  margin: 4px;
+  background-color: transparent;
+  border: none;
+}
+
+.front {
+  position: relative;
+  z-index: -1
+}
+
+.back {
+  position: absolute;
+}
+
+h1 {
+  color: #A6408B;
+  font-family: 'Indie Flower', cursive;
+}
+
 
 #memory-board {
-  padding-top: 200px;
-  padding-left: 6%;
-  padding-right: 1%;
+  padding: 20% 0 5%;
   position: absolute;
-}
-
-.sound-on, .sound-off {
-  margin-left: 1200px;
-  margin-top: 30px;
-  position: absolute;
-  z-index: +1;
+  display: flex;
+  flex-wrap: wrap;
+  width: auto;
+  justify-content: center;
+  align-items: center;
+  width: 1200px;
 }

@@ -176,11 +176,11 @@ function splashScreen() {
     canvas.style.display = "block"
     splashSong()
     logo()
-    ctx.drawImage(bigImage, 482, 110)
+    ctx.drawImage(bigImage, 482, 120)
     ctx.beginPath()
     ctx.font = "30px Montserrat Semibold";
     ctx.fillStyle = "#DE3E9F";
-    ctx.fillText("Learn the names of yoga poses", 442, 550);
+    ctx.fillText("Learn the names of yoga poses", 442, 585);
     ctx.closePath()
 }
 
@@ -250,8 +250,8 @@ function updateScore() {
     logo()
     ctx.beginPath()
     ctx.fillStyle = "#A6408B"
-    ctx.font = "50px Indie Flower"
-    ctx.fillText(`Lives: ${memoryGame.lives}`, 42, 150)
+    ctx.font = "40px Indie Flower"
+    ctx.fillText(`Lives: ${memoryGame.lives}`, 100, 90)
     ctx.closePath()
 }
 
@@ -293,12 +293,12 @@ function gameOver() {
     document.querySelector('#memory-board').innerHTML = ''
     tryAgainBtn.style.display = 'block'
     startBtn.style.display = 'none'
-    ctx.drawImage(bigImage, 482, 110)
+    ctx.drawImage(bigImage, 482, 120)
     logo()
     ctx.beginPath()
     ctx.font = "30px Montserrat Semibold";
     ctx.fillStyle = "#DE3E9F";
-    ctx.fillText(`Pairs guessed: ${memoryGame.pairsGuessed}. You need more practice. But keep calm and`, 232, 550);
+    ctx.fillText(`Pairs guessed: ${memoryGame.pairsGuessed}. You need more practice. But keep calm and`, 232, 585);
     ctx.closePath()
 }
 
@@ -312,7 +312,7 @@ function win() {
     startBtn.style.display = 'none'
     canvas.style.display = "block"
     splashSong()
-    ctx.drawImage(bigImage, 482, 110)
+    ctx.drawImage(bigImage, 482, 120)
     logo()
     ctx.beginPath()
     ctx.font = "30px Montserrat Semibold";
