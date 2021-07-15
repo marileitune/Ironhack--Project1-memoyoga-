@@ -178,7 +178,7 @@ function splashScreen() {
     logo()
     ctx.drawImage(bigImage, 482, 120)
     ctx.beginPath()
-    ctx.font = "30px Montserrat Semi-bold";
+    ctx.font = "600 30px Montserrat";
     ctx.fillStyle = "#DE3E9F";
     ctx.fillText("Learn the names of yoga poses", 442, 585);
     ctx.closePath()
@@ -296,7 +296,7 @@ function gameOver() {
     ctx.drawImage(bigImage, 482, 120)
     logo()
     ctx.beginPath()
-    ctx.font = "30px Montserrat Semi-bold";
+    ctx.font = "600 30px Montserrat";
     ctx.fillStyle = "#DE3E9F";
     ctx.fillText(`Pairs guessed: ${memoryGame.pairsGuessed}. You need more practice. But keep calm and`, 232, 585);
     ctx.closePath()
@@ -315,7 +315,7 @@ function win() {
     ctx.drawImage(bigImage, 482, 120)
     logo()
     ctx.beginPath()
-    ctx.font = "30px Montserrat Semi-bold";
+    ctx.font = "600 30px Montserrat";
     ctx.fillStyle = "#DE3E9F";
     ctx.fillText("You won. Now go to practice yoga. Namastê!", 357, 550);
     ctx.closePath()
