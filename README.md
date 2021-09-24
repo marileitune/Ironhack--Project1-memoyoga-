@@ -1,5 +1,7 @@
 # Memoyoga
 
+[Check out](https://marileitune.github.io/memoyoga/)
+
 ## Instructions
 This is a memory card game for 1 player.
 
